@@ -1,21 +1,33 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { QueryClient, QueryClientProvider, useQuery, useMutation, useQueryClient } from 'react-query';
-import axios from 'axios';
-import { useForm } from 'react-hook-form';
+import React from "react";
+import ReactDOM from "react-dom";
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
+import axios from "axios";
+import { useForm } from "react-hook-form";
+import "./index.css";
 
 const fetchItems = async () => {
-  const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
+  const response = await axios.get(
+    "https://jsonplaceholder.typicode.com/posts"
+  );
   return response.data;
 };
 
 const addItem = async (newItem) => {
-  const response = await axios.post('https://jsonplaceholder.typicode.com/posts', newItem);
+  const response = await axios.post(
+    "https://jsonplaceholder.typicode.com/posts",
+    newItem
+  );
   return response.data;
 };
 
 const useItems = () => {
-  return useQuery('items', fetchItems, {
+  return useQuery("items", fetchItems, {
     staleTime: 1000 * 60 * 5,
     cacheTime: 1000 * 60 * 10,
   });
@@ -25,7 +37,7 @@ const useAddItem = () => {
   const queryClient = useQueryClient();
   return useMutation(addItem, {
     onSuccess: () => {
-      queryClient.invalidateQueries('items');
+      queryClient.invalidateQueries("items");
     },
   });
 };
@@ -42,7 +54,7 @@ const Item = ({ item }) => {
 const ItemList = ({ items }) => {
   return (
     <div>
-      {items.map(item => (
+      {items.map((item) => (
         <Item key={item.id} item={item} />
       ))}
     </div>
@@ -66,8 +78,8 @@ const Home = () => {
     <div>
       <h1>Add New Item</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <input {...register('title')} placeholder="Title" required />
-        <textarea {...register('body')} placeholder="Body" required />
+        <input {...register("title")} placeholder="Title" required />
+        <textarea {...register("body")} placeholder="Body" required />
         <button type="submit">Add Item</button>
       </form>
       <h2>Items List</h2>
@@ -90,5 +102,5 @@ ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
