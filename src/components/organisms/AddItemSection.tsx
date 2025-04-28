@@ -1,6 +1,7 @@
 import {
   UseFormRegister,
   UseFormHandleSubmit,
+  FieldErrors,
   SubmitHandler,
 } from "react-hook-form";
 import ItemForm from "../molecules/ItemForm";
@@ -10,6 +11,7 @@ interface AddItemSectionProps {
   register: UseFormRegister<Omit<Item, "id">>;
   handleSubmit: UseFormHandleSubmit<Omit<Item, "id">>;
   onSubmit: SubmitHandler<Omit<Item, "id">>;
+  errors: FieldErrors<Omit<Item, "id">>;
   isLoading: boolean;
   isError: boolean;
   error?: Error;
@@ -19,6 +21,7 @@ const AddItemSection = ({
   register,
   handleSubmit,
   onSubmit,
+  errors,
   isLoading,
   isError,
   error,
@@ -30,6 +33,8 @@ const AddItemSection = ({
       register={register}
       handleSubmit={handleSubmit}
       onSubmit={onSubmit}
+      errors={errors}
+      isLoading={isLoading}
     />
     {isLoading && <p className="mt-2">Adding item…</p>}
   </section>

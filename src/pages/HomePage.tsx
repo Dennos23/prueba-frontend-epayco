@@ -1,20 +1,28 @@
-import React from "react";
 import { useItems } from "../hooks/useItems";
 import { useForm } from "react-hook-form";
 import type { Item } from "../types/Item";
-
 import HomeTemplate from "../components/templates/HomeTemplate";
 import AddItemSection from "../components/organisms/AddItemSection";
-import ItemList from "../components/organisms/ItemList";
 import { useAddItem } from "../hooks/useAdditem";
+import ItemsSection from "../components/organisms/ItemsSection";
 
-const HomePage: React.FC = () => {
+const HomePage = () => {
   const {
     data: items = [],
     isLoading: loadingItems,
     error: itemsError,
+    refetch,
   } = useItems();
-  const { register, handleSubmit, reset } = useForm<Omit<Item, "id">>();
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<Omit<Item, "id">>({
+    mode: "onTouched",
+  });
+
   const {
     mutate: addItem,
     isPending: adding,
@@ -33,6 +41,7 @@ const HomePage: React.FC = () => {
         register={register}
         handleSubmit={handleSubmit}
         onSubmit={onSubmit}
+        errors={errors}
         isLoading={adding}
         isError={addError}
         error={error as Error}
@@ -43,7 +52,11 @@ const HomePage: React.FC = () => {
       ) : itemsError ? (
         <div>Error: {(itemsError as Error).message}</div>
       ) : (
-        <ItemList items={items} />
+        <ItemsSection
+          items={items}
+          onReload={() => refetch()}
+          isLoading={loadingItems}
+        />
       )}
     </HomeTemplate>
   );

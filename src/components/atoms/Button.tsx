@@ -1,16 +1,19 @@
-import React from "react";
+import { ButtonHTMLAttributes } from "react";
 
-interface ButtonProps {
-  children: React.ReactNode;
-  type?: "button" | "submit" | "reset";
-  className?: string;
-}
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
 
-const Button = ({ children, type = "button", className = "" }: ButtonProps) => (
+const Button = ({
+  children,
+  className = "",
+  disabled = false,
+  ...rest
+}: ButtonProps) => (
   <button
-    type={type}
+    {...rest}
+    disabled={disabled}
     className={[
       "bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded",
+      disabled && "opacity-50 cursor-not-allowed",
       className,
     ].join(" ")}
   >
