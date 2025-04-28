@@ -7,7 +7,7 @@ import {
 import Input from "../atoms/Input";
 import Button from "../atoms/Button";
 import type { Item } from "../../types/Item";
-import Textarea from "../atoms/_temp";
+import Textarea from "../atoms/Textarea";
 
 interface ItemFormProps {
   register: UseFormRegister<Omit<Item, "id">>;
