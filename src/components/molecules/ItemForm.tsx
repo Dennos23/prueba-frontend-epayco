@@ -7,7 +7,7 @@ import {
 import Input from "../atoms/Input";
 import Button from "../atoms/Button";
 import type { Item } from "../../types/Item";
-import Textarea from "../atoms/TextArea";
+import Textarea from "../atoms/_temp";
 
 interface ItemFormProps {
   register: UseFormRegister<Omit<Item, "id">>;
@@ -43,7 +43,7 @@ const ItemForm = ({
         {...register("body", {
           required: "Body is required",
           minLength: { value: 10, message: "Minimum 10 characters" },
-          maxLength: { value: 500, message: "Maximum 500 characters" },
+          maxLength: { value: 500, message: "Maximum 400 characters" },
         })}
         placeholder="Insert a body for your Item"
       />

@@ -6,14 +6,11 @@ interface ItemListProps {
 }
 
 const ItemList = ({ items }: ItemListProps) => (
-  <section>
-    <h2 className="text-xl font-semibold mb-4">Items List</h2>
-    <div className="space-y-4">
-      {items.map((item) => (
-        <ItemCard key={item.id} item={item} />
-      ))}
-    </div>
-  </section>
+  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    {items.map((item) => (
+      <ItemCard key={item.id} item={item} />
+    ))}
+  </div>
 );
 
 export default ItemList;
