@@ -3,6 +3,7 @@
 - [Objetivo](#objetivo)
 - [Requerimientos](#requerimientos)
 - [Uso de la aplicación](#uso-de-la-aplicación)
+- [Versión en vivo](#versión-en-vivo)
 - [Estructura de Carpetas](#estructura-de-carpetas)
 - [Descripción de Carpetas y Archivos](#descripción-de-carpetas-y-archivos)
 - [Dependencias](#dependencias)
@@ -86,6 +87,14 @@ Accede a la aplicación en `http://localhost:5173`.
    yarn preview
    ```
    La aplicación compilada se sirve en `http://localhost:4173` por defecto.
+
+---
+
+## Versión en vivo
+
+La aplicación está desplegada y accesible en GitHub Pages:
+
+**https://Dennos23.github.io/prueba-frontend-epayco/**
 
 ---
 
